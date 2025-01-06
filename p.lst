@@ -1,0 +1,34 @@
+     1                                  section .data
+     2 00000000 0A000000                	a1 dd 10
+     3 00000004 1400                    	a2 dw 20
+     4 00000006 0A00000014000000        	a3 dd 10,20
+     5                                  	
+     6                                  section .bss
+     7 00000000 ????????                	a resd 1
+     8 00000004 ????????????????        	b resb 8
+     9 0000000C <res 28h>               	j resd 10
+    10 00000034 <res 18h>               	hs resd 6
+    11                                  
+    12                                  section .text
+    13                                  	global main
+    14                                  	
+    15 00000000 F7E0                    main: mul eax
+    16 00000002 83C30C                  	 add ebx, 12
+    17 00000005 40                      	 inc eax
+    18 00000006 4B                      	 dec ebx
+    19                                  		
+    20 00000007 F7E3                    	efg: mul ebx
+    21 00000009 83F80E                  	cmp eax, 14
+    22 0000000C 39CB                    	cmp ebx, ecx
+    23 0000000E 3B19                    	cmp ebx, [ecx]
+    24 00000010 3911                    	cmp [ecx], edx
+    25 00000012 EB0C                    	jmp sf
+    26 00000014 3901                    	cmp [ecx], eax
+    27 00000016 40                      	inc eax
+    28 00000017 4B                      	dec ebx
+    29 00000018 83E80F                  	sub eax, 15
+    30 0000001B 2B03                    	sub eax, [ebx]
+    31 0000001D EBE8                    	jmp efg
+    32 0000001F 40                      	abc: inc eax
+    33 00000020 83E87B                  	sf: sub eax, 123
+    34 00000023 43                      	eq: inc ebx
